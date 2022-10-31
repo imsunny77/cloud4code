@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} System users {% endblock %}
+{% block heading %} System users {% endblock %}
+{% block content %}
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th scope="col">name</th>
+            <td>{{object.first_name}} {{object.last_name}}</td>
+        </tr>
+        <tr>
+            <th scope="col">email</th>
+            <td>{{object.email}}</td>
+        </tr>
+        <tr>
+            <th scope="col">Date of Birth</th>
+            <td>{{object.date_of_birth}}</td>
+        </tr>
+        <tr>
+            <th scope="col">Sex</th>
+            <td>{{object.get_sex_display}}</td>
+        </tr>
+        <tr>
+            <th scope="col">About User</th>
+            <td>{{object.about}}</td>
+        </tr>
+    </tbody>
+  </table>
+{% endblock %}
+

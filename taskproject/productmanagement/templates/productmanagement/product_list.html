@@ -1,0 +1,98 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Product Management {% endblock %}
+{% block heading %} Product Management {% endblock %}
+{% block css %}
+{% include 'productmanagement/header.html' %}
+
+{% endblock %}
+
+{% block nav %}
+<a class='btn btn-primary' href="/">User List</a>
+<a class='btn btn-primary' href="{% url 'productmanagement:categories' %}">Category List</a>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">Add Product</button>
+{% endblock %}
+
+{% block content %}
+{% include 'productmanagement/modal.html' %}
+
+
+<div class="row">
+	<div class="col-3">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">product category</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<ul id="categories_1"></ul>
+
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ul id="categories_2"></ul>
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+	</div>
+	<div class="col-9">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">feature image</th>
+					<th scope="col">product name</th>
+					<th scope="col">product category</th>
+					<th scope="col">price</th>
+					<th scope="col">Action</th>
+
+				</tr>
+			</thead>
+			<tbody id="product_list">
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal fade" id="delete_productdata" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="id_modal_title">Delete Product </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Are you sure? Do you want to delete?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id='close_modal'>No</button>
+				<button type="submit" class="btn btn-primary" id='id_delete_product'
+					onClick='deleteProduct(this.id)'>Yes</button>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+	var category_list = "{% url 'productmanagement:category_list' %}";
+	var csrf_token = '{{csrf_token}}'
+</script>
+
+<script src="{% static 'productmanagement/js/categories.js' %}"></script>
+<script src="{% static 'productmanagement/js/product.js' %}"></script>
+
+{% endblock %}

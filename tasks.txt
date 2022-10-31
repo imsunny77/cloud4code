@@ -1,0 +1,89 @@
+
+ET : 7 Hours
+
+
+Question-1
+Python program to print Pascal’s Triangle
+ex.
+Input: N = 5
+Output:
+      1
+     1 1
+    1 2 1
+   1 3 3 1
+  1 4 6 4 1
+-------------------------------------------------------------------------------------------------------------
+
+Question-2 (Django)
+- Create Login and Registration Form and perform CRUD operation.
+- Use the fields for make registration form
+  (Text, Textarea, Select, Redio Button, Checkbox, Password, Email)
+- Use Proper Validation Like ( All Filed Required, login page validation, email validation, password validation, etc... )
+- New users can register then it can be login through email and password.
+- After login redirect to Home Page and display all registered user records in table view and can update and delete any records.
+
+-------------------------------------------------------------------------------------------------------------
+Question-3 (SQL)
+=> Make Database Design of Ecommarce Product. Use All Fetures (Category, Subcategory , Size , Color , Attributes and etc). All things in Dynamic.
+-------------------------------------------------------------------------------------------------------------
+Question-4.  ### Input
+data= [
+                {
+                "camp":1,
+                "bid":1
+            },
+            {
+                "camp":1,
+                "bid":2
+            },
+            {
+                "camp":2,
+                "bid":3
+            },
+            {
+                "camp":2,
+                "bid":4
+            },
+            {
+                "camp":3,
+                "bid":5
+            }
+]
+
+###Output:
+
+OUTput Should be
+
+[{'camp': 1, 'bid': [1, 2]}, {'camp': 2, 'bid': [3, 4]}, {'camp': 3, 'bid': [5]}]
+-------------------------------------------------------------------------------------------------------------
+
+Question-5 Write API for Create, Update, Delete category/product with following feature.
+
+1. Category  can be subcategory of other category & possibly N number of depth.check below example
+    Category 1
+		sub category  1
+			sub category
+				sub category
+				.
+				.
+				N
+			.
+			.
+			N
+		Sub category  2
+		Sub category  3
+		.
+		.
+		N
+	.
+	.
+	N
+
+
+2. Implement simple CRUD API to create product(name, price) & assign multiple categories to it
+
+
+Hint: You can use django rest framework for writing api
+
+
+-------------------------------------------------------------------------------------------------------------

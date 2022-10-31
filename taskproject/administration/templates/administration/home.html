@@ -1,0 +1,75 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} System users {% endblock %}
+{% block heading %} System users {% endblock %}
+{% block nav %}
+<a class='btn btn-primary' href="{% url 'productmanagement:product_list' %}">Product Management</a>
+
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">name</th>
+      <th scope="col">email</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Sex</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in rootuser_list %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{user.first_name}} {{user.last_name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.date_of_birth}}</td>
+      <td>{{user.get_sex_display}}</td>
+      <td>
+        <a href="{% url 'administration:user_detail' user.pk %}" class="btn btn-primary">Details</a>
+        <a href="{% url 'administration:edit_user' user.pk %}" class="btn btn-primary">Edit</a>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{user.pk}}_userdata">
+          Delete
+        </button>
+
+        <div class="modal fade" id="{{user.pk}}_userdata" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <form action="{% url 'administration:delete_user' user.pk %}" method="post">
+                {% csrf_token %}
+
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Delete User : {{user.first_name}}
+                    {{user.last_name}}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure? Do you want to delete?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                  <button type="submit" class="btn btn-primary">Yes</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{% endblock %}

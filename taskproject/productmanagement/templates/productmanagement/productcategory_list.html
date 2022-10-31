@@ -1,0 +1,91 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Product Management {% endblock %}
+{% block heading %} Product Management {% endblock %}
+{% block css %}
+{% include 'productmanagement/header.html' %}
+
+{% endblock %}
+
+{% block nav %}
+<a class='btn btn-primary' href="/">User List</a>
+<a class='btn btn-primary' href="{% url 'productmanagement:product_list' %}">Product List</a>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">Add Category</button>
+{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id='add'
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				{% crispy form %}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Cancel</button>
+				<button type="submit" class="btn btn-primary" id="add_data">Add</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-9">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">parent category</th>
+				<th scope="col">category</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody id="category_list">
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="modal fade" id="delete_categorydata" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="id_modal_title">Delete Category </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Are you sure? Do you want to delete?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id='close_modal'>No</button>
+				<button type="submit" class="btn btn-primary" id='id_delete_category'
+					onClick='deleteCategory(this.id)'>Yes</button>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+	var csrf_token = '{{csrf_token}}'
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	var csrf_token = '{{csrf_token}}'
+</script>
+<script src="{% static 'productmanagement/js/category_list.js' %}"></script>
+
+{% endblock %}
